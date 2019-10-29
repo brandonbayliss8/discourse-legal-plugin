@@ -344,7 +344,6 @@ module ExtendedDownloadExportExtension
   def user_external_accounts_fields
     @user_external_accounts_fields ||= begin
       fields = []
-      fields.concat GOOGLE.map { |f| "google_user_infos.#{f}" } if GoogleUserInfo.exists?(user_id: archive_user.id)
       fields.concat ASSOCIATED.map { |f| "user_associated_accounts.#{f}" } if UserAssociatedAccount.exists?(user_id: archive_user.id)
       fields.concat GITHUB.map { |f| "github_user_infos.#{f}" } if GithubUserInfo.exists?(user_id: archive_user.id)
       fields.concat INSTAGRAM.map { |f| "instagram_user_infos.#{f}" } if InstagramUserInfo.exists?(user_id: archive_user.id)
@@ -385,7 +384,6 @@ module ExtendedDownloadExportExtension
   def user_external_accounts
     attributes = User.where(id: archive_user.id)
       .joins("
-        LEFT JOIN google_user_infos ON google_user_infos.user_id = users.id
         LEFT JOIN user_associated_accounts ON user_associated_accounts.user_id = users.id
         LEFT JOIN github_user_infos ON github_user_infos.user_id = users.id
         LEFT JOIN instagram_user_infos ON instagram_user_infos.user_id = users.id
