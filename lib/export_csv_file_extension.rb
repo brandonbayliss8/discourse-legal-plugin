@@ -84,18 +84,6 @@ module ExtendedDownloadExportExtension
     'email'
   ]
 
-  GOOGLE = [
-    'google_user_id',
-    'first_name',
-    'last_name',
-    'email',
-    'gender',
-    'name',
-    'link',
-    'profile_link',
-    'picture'
-  ]
-
   ASSOCIATED = [
     'provider_name',
     'provider_uid',
